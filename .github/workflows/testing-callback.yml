@@ -1,0 +1,12 @@
+name: Testing Workflow Callback
+
+on:
+  workflow_run:
+    workflows: ["Build and Test on Multiple Platforms"]
+    types:
+      - completed
+
+jobs:
+  call-reusable-workflow:
+    name: Call Reusable Testing Callback Workflow
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-testing-callback.yml@consistent-testing

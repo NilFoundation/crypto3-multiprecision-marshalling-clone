@@ -1,0 +1,15 @@
+name: Starter Workflow for Pull Requests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  call-reusable-workflow:
+    name: Call Reusable PR Workflow
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-pull-request.yml@consistent-testing
+    with:
+      ci_cd_ref: ''
+    secrets: inherit

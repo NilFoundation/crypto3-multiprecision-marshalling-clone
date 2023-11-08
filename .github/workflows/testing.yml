@@ -1,0 +1,23 @@
+name: Build and Test on Multiple Platforms
+
+on:
+  # repository_dispatch may suit more here, however, it needs content read/write permission, which I prefer not to grant
+  workflow_dispatch:
+    inputs:
+      submodules_json:
+        description: "JSON with submodules' repo names and SHAs"
+        required: false
+      callback_json:
+        description: "JSON with auxiliary info. Contains data for callback"
+        required: false
+        default: "{\"triggered_by\": \"manual\"}"
+
+jobs:
+  call-reusable-workflow:
+    name: Call Reusable Testing Workflow
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-testing.yml@consistent-testing
+    with:
+      submodules_json: ${{ github.event.inputs.submodules_json }}
+      umbrella_repo: 'NilFoundation/crypto3-copy'
+      callback_json: ${{ github.event.inputs.callback_json }}
+      ci_cd_ref:
