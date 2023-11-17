@@ -1,8 +1,9 @@
-name: Testing Workflow Callback
+# Needed to publish test results in fork
+name: Testing Callback
 
 on:
   workflow_run:
-    workflows: ["Build and Test on Multiple Platforms"]
+    workflows: ["PR Testing"]
     types:
       - completed
 
