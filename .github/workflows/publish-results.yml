@@ -10,4 +10,4 @@ on:
 jobs:
   call-reusable-workflow:
     name: Call Reusable Testing Callback Workflow
-    uses: NilFoundation/ci-cd/.github/workflows/reusable-crypto3-publish-result.yml@consistent-testing
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-crypto3-publish-result.yml@0588663776c5989c2ba23064811e7f71a20ada83
