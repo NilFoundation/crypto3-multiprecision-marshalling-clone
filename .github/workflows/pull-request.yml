@@ -1,4 +1,4 @@
-name: Starter Workflow for Pull Requests
+name: PR Testing
 
 on:
   pull_request:
@@ -7,9 +7,18 @@ on:
       - synchronize
 
 jobs:
-  call-reusable-workflow:
-    name: Call Reusable PR Workflow
-    uses: NilFoundation/ci-cd/.github/workflows/reusable-pull-request.yml@consistent-testing
+  handle-syncwith:
+    name: Call Reusable SyncWith Handler
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-handle-syncwith.yml@escape-title
     with:
-      ci_cd_ref: ''
+      ci-cd-ref: 'escape-title'
+    secrets: inherit
+
+  matrix-test:
+    name: Call Reusable Crypto3 Testing
+    needs:
+      - handle-syncwith
+    uses: NilFoundation/ci-cd/.github/workflows/reusable-crypto3-testing.yml@0588663776c5989c2ba23064811e7f71a20ada83
+    with:
+      submodules-refs: ${{ needs.handle-syncwith.outputs.prs-shas }}
     secrets: inherit

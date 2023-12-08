@@ -62,6 +62,9 @@ set(TESTS_NAMES
     "integral"
     "integral_fixed_size_container"
     "integral_non_fixed_size_container"
+    "failing"
+    "failing_build"
+    "fixed_by_consistent_testing"
     )
 
 foreach(TEST_NAME ${TESTS_NAMES})
